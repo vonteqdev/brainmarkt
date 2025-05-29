@@ -14,13 +14,13 @@ Repo: https://github.com/vonteqdev/brainmarkt
 
 🔧 Local Setup (macOS)
 
-Install dependencies:
+1. Prerequisites
 
 brew install php composer postgresql node git
 brew services start php
 brew services start postgresql
 
-Clone and set up the project:
+2. Clone and Setup Project
 
 git clone https://github.com/vonteqdev/brainmarkt.git
 cd brainmarkt
@@ -31,7 +31,7 @@ npm install
 cp .env.example .env
 php artisan key:generate
 
-Update .env:
+3. Configure Database (PostgreSQL Recommended)
 
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
@@ -40,7 +40,7 @@ DB_DATABASE=brainmarkt_db
 DB_USERNAME=brainmarkt_user
 DB_PASSWORD=secret
 
-Create the database and user:
+Then setup DB via terminal:
 
 psql postgres
 
@@ -51,18 +51,18 @@ CREATE DATABASE brainmarkt_db OWNER brainmarkt_user;
 GRANT ALL PRIVILEGES ON DATABASE brainmarkt_db TO brainmarkt_user;
 \q
 
-Run migrations:
+4. Migrations & Seeding
 
 php artisan migrate
 php artisan db:seed # optional
 
-Serve the app:
+5. Serve the Application
 
 php artisan serve
 
-Visit: http://localhost:8000
+App will run on: http://localhost:8000
 
-📂 Push to GitHub (Using Personal Access Token)
+🚀 GitHub Push Instructions (With Token Auth)
 
 git init
 git add .
@@ -71,26 +71,35 @@ git remote add origin https://github.com/vonteqdev/brainmarkt.git
 git branch -M main
 git push -u origin main
 
-💡 When prompted for username/password:
+🧠 Use a GitHub Personal Access Token as password during push.
 
-Username: your GitHub username
+🔐 Optional Features
 
-Password: your GitHub token
-
-🔐 Optional
-
-API Auth (Laravel Breeze + Sanctum):
+Laravel Breeze (API Auth):
 
 composer require laravel/breeze --dev
 php artisan breeze:install api
 php artisan migrate
 
-Docker (Laravel Sail):
+Laravel Sail (Docker):
 
 composer require laravel/sail --dev
 php artisan sail:install
 ./vendor/bin/sail up
 
-✅ Done
+Use .env with:
 
-You’re ready to build and deploy the BrainMarkt API 🚀
+DB_HOST=pgsql
+
+✅ Final Notes
+
+Test API with Postman or Insomnia.
+
+Nuxt frontend runs on http://localhost:3000 — configure CORS in Laravel if needed.
+
+Keep .env and database credentials safe.
+
+Commit early, commit often.
+
+You're ready to build and launch BrainMarkt API! 🚀
+
